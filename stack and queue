@@ -1,0 +1,140 @@
+#include <iostream>
+using namespace std;
+
+const int MAX_SIZE = 100;
+
+class Stack {
+private:
+    int top;
+    int data[MAX_SIZE];
+public:
+    Stack() : top(-1) {}
+
+    bool isEmpty() {
+        return top == -1;
+    }
+
+    bool isFull() {
+        return top == MAX_SIZE - 1;
+    }
+
+    void push(int value) {
+        if (!isFull()) {
+            data[++top] = value;
+            cout << "Pushed " << value << " onto the stack." << endl;
+        } else {
+            cout << "Error: Stack is full, cannot push." << endl;
+        }
+    }
+
+    void pop() {
+        if (!isEmpty()) {
+            int poppedValue = data[top--];
+            cout << "Popped " << poppedValue << " from the stack." << endl;
+        } else {
+            cout << "Error: Stack is empty, cannot pop." << endl;
+        }
+    }
+
+    void display() {
+        cout << "Stack Elements:";
+        for (int i = top; i >= 0; --i) {
+            cout << " " << data[i];
+        }
+        cout << endl;
+    }
+};
+
+int main() {
+    Stack myStack;
+
+    myStack.push(10);
+    myStack.push(20);
+    myStack.push(30);
+
+    myStack.display();
+
+    myStack.pop();
+    myStack.display();
+
+    return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+
+const int MAX_SIZE = 100;
+
+class Queue {
+private:
+    int front, rear;
+    int data[MAX_SIZE];
+public:
+    Queue() : front(-1), rear(-1) {}
+
+    bool isEmpty() {
+        return front == -1;
+    }
+
+    bool isFull() {
+        return (rear == MAX_SIZE - 1 && front == 0) || (rear == front - 1);
+    }
+
+    void enqueue(int value) {
+        if (!isFull()) {
+            if (isEmpty()) {
+                front = rear = 0;
+            } else {
+                rear = (rear + 1) % MAX_SIZE;
+            }
+            data[rear] = value;
+            cout << "Enqueued " << value << " into the queue." << endl;
+        } else {
+            cout << "Error: Queue is full, cannot enqueue." << endl;
+        }
+    }
+
+    void dequeue() {
+        if (!isEmpty()) {
+            int dequeuedValue = data[front];
+            if (front == rear) {
+                front = rear = -1;
+            } else {
+                front = (front + 1) % MAX_SIZE;
+            }
+            cout << "Dequeued " << dequeuedValue << " from the queue." << endl;
+        } else {
+            cout << "Error: Queue is empty, cannot dequeue." << endl;
+        }
+    }
+
+    void display() {
+        if (!isEmpty()) {
+            cout << "Queue Elements:";
+            int i = front;
+            while (i != rear) {
+                cout << " " << data[i];
+                i = (i + 1) % MAX_SIZE;
+            }
+            cout << " " << data[rear] << endl;
+        } else {
+            cout << "Queue is empty." << endl;
+        }
+    }
+};
+
+int main() {
+    Queue myQueue;
+
+    myQueue.enqueue(10);
+    myQueue.enqueue(20);
+    myQueue.enqueue(30);
+
+    myQueue.display();
+
+    myQueue.dequeue();
+    myQueue.display();
+
+    return 0;
+}
