@@ -1,0 +1,105 @@
+#include <iostream>
+using namespace std;
+
+const int MAX_SIZE = 100;
+
+class StaticList {
+private:
+    int data[MAX_SIZE];
+    int size;
+public:
+    StaticList() : size(0) {}
+
+    void insert(int value) {
+        if (size < MAX_SIZE) {
+            data[size++] = value;
+            cout << "Inserted " << value << " into static list." << endl;
+        } else {
+            cout << "Error: Static list is full, cannot insert." << endl;
+        }
+    }
+
+    void display() {
+        cout << "Static List Elements:";
+        for (int i = 0; i < size; ++i) {
+            cout << " " << data[i];
+        }
+        cout << endl;
+    }
+};
+
+int main() {
+    StaticList myList;
+
+    myList.insert(10);
+    myList.insert(20);
+    myList.insert(30);
+
+    myList.display();
+
+    return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+
+class Node {
+public:
+    int data;
+    Node* next;
+
+    Node(int value) : data(value), next(nullptr) {}
+};
+
+class LinkedList {
+private:
+    Node* head;
+public:
+    LinkedList() : head(nullptr) {}
+
+    void insert(int value) {
+        Node* newNode = new Node(value);
+        if (!head) {
+            head = newNode;
+        } else {
+            Node* temp = head;
+            while (temp->next) {
+                temp = temp->next;
+            }
+            temp->next = newNode;
+        }
+        cout << "Inserted " << value << " into linked list." << endl;
+    }
+
+    void display() {
+        Node* temp = head;
+        cout << "Linked List Elements:";
+        while (temp) {
+            cout << " " << temp->data;
+            temp = temp->next;
+        }
+        cout << endl;
+    }
+
+    ~LinkedList() {
+        Node* temp;
+        while (head) {
+            temp = head;
+            head = head->next;
+            delete temp;
+        }
+    }
+};
+
+int main() {
+    LinkedList myList;
+
+    myList.insert(10);
+    myList.insert(20);
+    myList.insert(30);
+
+    myList.display();
+
+    return 0;
+}
