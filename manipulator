@@ -1,0 +1,24 @@
+#include <iostream>
+#include <iomanip> // Required for manipulators
+
+using namespace std;
+
+int main() {
+    int num = 1234;
+    double pi = 3.141592653589793;
+
+    // Using setw() to set field width
+    cout << setw(10) << "Number:" << setw(10) << num << endl;
+
+    // Using setprecision() to set decimal precision
+    cout << "Pi: " << setprecision(5) << pi << endl;
+
+    // Using fixed and setprecision together
+    cout << "Pi: " << fixed << setprecision(3) << pi << endl;
+
+    // Using setw() and setfill() for padding
+    cout << setfill('*');
+    cout << setw(15) << left << "Left aligned:" << setw(10) << right << "Right aligned" << endl;
+
+    return 0;
+}
