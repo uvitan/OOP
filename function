@@ -1,0 +1,70 @@
+#include<iostream>
+#include<string>
+using namespace std;
+
+//base class person
+
+class Person{
+
+protected:
+       string name;
+       int age;
+       
+public:
+       Person(string n,int a):name(n),age(a){}
+       
+       void displayInfo(){
+	   cout<<"name:"<<name<<endl;
+	   cout<<"name"<<age<<endl;
+	   
+	   }
+
+};
+
+class Student: public Person{
+
+private:
+int studentId;
+public:
+    student(string n,int a,int id): 
+	Person(n,a), studentId(id) {}
+    
+    void displayInfo(){
+	
+	   person::displayInfo(); //call base class displayInfo function
+	   cout<<"Student ID:"<< studentId << endl;
+	}
+
+};
+
+class Employee: public Person{
+
+      private: int employeeId;
+      public:
+      Employee()string n,int a, int id): Person(n,a), employeeId(id){}
+      
+      void displayInfo(){
+	  
+	  Person::displayinfo(); //call base class displayInfo function
+	  cout<<"Employee ID:"<< employeeId<<endl;
+	  }
+};
+
+int main()
+//creating object of student and employee classes
+
+Student student("Yuvraj",20,1001);
+Employee employee("Yash",30,2001);
+
+// displaying information using respective displayinfo function
+
+cout<<"student information:"<<endl;
+student.displayInfo();
+cout<<endl;
+
+cout<< "Employee Information:"<<endl;
+employrr.displayInfo();
+
+return 0;
+
+}
