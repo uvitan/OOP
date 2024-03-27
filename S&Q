@@ -1,0 +1,77 @@
+#include<iostream>
+using namespace std;
+class stack{
+	const int maxstack=10;
+           int Astack[11];
+           int top;
+	   public: void push( int element)
+{
+
+	if (top==maxstack)
+	{
+		cout<<"your stack is full";
+
+	}
+	else
+	{
+		top=top+1;
+		Astack[top]=element;
+	}
+
+}
+
+public: void pop()
+{
+	if(top==0)
+	{
+	cout<<"your stack is empty";
+
+	}
+	else
+	{
+	top=top-1;
+	}
+
+}
+
+public: void display()
+{
+	int i;
+	for(i=0;i<=top;i++)
+	{
+	cout<<Astack[i];
+	}
+}
+
+};
+
+int main()
+{
+
+	int element,choice;
+        stack s;
+	cout<<"1.create stack\n2.insert\n3.delete";
+	cin>>choice;
+	switch(choice)
+	{
+	   case 1:
+		
+		cout<<"dtack is created";
+		break ;
+	  case 2:
+		cout<<"enter the element";
+		cin>>element;	
+		s.push(element);
+		s.display();
+		break;
+	  case 3:
+		s.pop();
+		s.display();
+		break;
+	  case 4:
+		s.display();
+		
+	}
+
+	
+}
