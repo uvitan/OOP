@@ -1,0 +1,63 @@
+#include<iostream>
+using namespace std;
+
+class person{
+	
+	public:
+		int div;
+		char name[10];
+		int age;
+		char gender[10];
+		
+		
+		void getdata(){
+			cout<<"enter the div";
+				cin>>div;
+		}
+};
+
+class student: public virtual person{
+	
+	public: int roll_no;
+			int marks;
+			int sr;
+			
+			
+			void getdata(){
+			cout<<"enter the sr no";
+				cin>>sr;
+		}
+			
+};
+/*class teacher: public virtual person{
+
+	public: float salary;
+			int id_no;
+			char post[10];
+			teacher(int id){
+				id_no=id;
+			}
+			void getdata(){
+			cout<<"enter the post";
+				cin>>post;
+		}
+};
+
+class principle: public student,public teacher{
+
+public:
+	void display(){
+	
+	cout<<"school name";
+}
+};*/
+int main()
+{
+	
+	//person *per;
+	student st;
+	//per=&st;
+	//per->getdata();
+	st.getdata();
+	return 0;
+}
