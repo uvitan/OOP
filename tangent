@@ -1,0 +1,124 @@
+#include <iostream>
+#include <cmath>
+
+class Line {
+private:
+    int slope;
+    int intercept;
+
+public:
+    Line(int m, int b) : slope(m), intercept(b) {}
+
+    // Function to check if a point is on the line
+    bool isOnLine(int x, int y) {
+        return y == slope * x + intercept;
+    }
+};
+
+class Circle {
+private:
+    int centerX;
+    int centerY;
+    int radius;
+    double circumference;
+    double area;
+
+public:
+    // Constructors
+    Circle() : centerX(0), centerY(0), radius(0) {}
+
+    Circle(int cx, int cy) : centerX(cx), centerY(cy), radius(1) {
+        calculate();
+    }
+
+    Circle(int cx, int cy, int r) : centerX(cx), centerY(cy), radius(r) {
+        calculate();
+    }
+
+    // Setters and Getters
+    void setCenter(int cx, int cy) {
+        centerX = cx;
+        centerY = cy;
+        calculate();
+    }
+
+    void setRadius(int r) {
+        radius = r;
+        calculate();
+    }
+
+    int getCenterX() const { return centerX; }
+    int getCenterY() const { return centerY; }
+    int getRadius() const { return radius; }
+
+    // Calculation functions
+    void calculate() {
+        circumference = 2 * M_PI * radius;
+        area = M_PI * radius * radius;
+    }
+
+    double calcArea() const {
+        return area;
+    }
+
+    double getArea() const {
+        return area;
+    }
+
+    double calcCircumference() const {
+        return circumference;
+    }
+
+    double getCircumference() const {
+        return circumference;
+    }
+
+    // Function to check if a line is tangent to the circle
+    bool isTangent(int x1, int y1, int x2, int y2) {
+        Line l(x1, y1, x2, y2);
+        return isTangent(l);
+    }
+
+    bool isTangent(int m, int b) {
+        Line l(m, b);
+        return isTangent(l);
+    }
+
+    bool isTangent(const Line& line) {
+        int x1 = line.getPoint1X();
+        int y1 = line.getPoint1Y();
+        int x2 = line.getPoint2X();
+        int y2 = line.getPoint2Y();
+        
+        // Check if any of the two end points of the line are on the circle
+        if ((x1 - centerX) * (x1 - centerX) + (y1 - centerY) * (y1 - centerY) == radius * radius ||
+            (x2 - centerX) * (x2 - centerX) + (y2 - centerY) * (y2 - centerY) == radius * radius) {
+            return true;
+        }
+
+        // Check if the line intersects the circle at only one point (i.e., it's tangent)
+        return std::abs((x2 - x1) * (centerY - y1) - (y2 - y1) * (centerX - x1)) == radius * std::sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+    }
+
+    // Draw function
+    void draw() {
+        std::cout << "Drawing circle at center (" << centerX << ", " << centerY << ") with radius " << radius << std::endl;
+    }
+};
+
+int main() {
+    // Testing the Circle class
+    Circle c1; // No argument constructor
+    c1.draw();
+    std::cout << "Area: " << c1.getArea() << ", Circumference: " << c1.getCircumference() << std::endl;
+
+    Circle c2(3, 4); // Constructor with center coordinates
+    c2.draw();
+    std::cout << "Area: " << c2.getArea() << ", Circumference: " << c2.getCircumference() << std::endl;
+
+    Circle c3(3, 4, 5); // Constructor with center coordinates and radius
+    c3.draw();
+    std::cout << "Area: " << c3.getArea() << ", Circumference: " << c3.getCircumference() << std::endl;
+
+    return 0;
+}
